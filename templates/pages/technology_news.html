@@ -1,0 +1,20 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Local news page {% endblock title %}
+
+{% block content %}
+    <div class="row">
+    {% for technology_new in technology_news %}
+      <div class="col-sm-6" style="margin-bottom: 20px">
+       <a href="{{technology_new.get_absolute_url}}">
+        <div class="" style="display:flex; gap: 15px">
+          <img src="{{technology_new.image.url}}" alt="{{technology_new.title}}" width="150" height="100" />
+          <h4>{{technology_new.title}}</h4>
+        </div>
+       </a>
+      </div>
+    {% endfor %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Local news page {% endblock title %}
+
+{% block content %}
+    <div class="row">
+    {% for world_new in world_news %}
+      <div class="col-sm-6" style="margin-bottom: 20px">
+        <a href="{{world_new.get_absolute_url}}">
+            <div class="" style="display:flex; gap: 15px">
+             <img src="{{world_new.image.url}}" alt="{{world_new.title}}" width="150" height="100" />
+                <h4>{{world_new.title}}</h4>
+            </div>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+
+{% endblock content %}

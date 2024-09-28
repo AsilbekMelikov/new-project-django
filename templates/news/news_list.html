@@ -1,0 +1,17 @@
+{% extends "news/base.html" %}
+
+
+
+
+{% block content %}
+
+
+    {% for news_list in news_lists %}
+        <h1>
+            <a href="{% url 'news_details' news_list.pk %}">
+                  {{ news_list.title }}
+            </a>
+        </h1>
+    {% endfor %}
+
+{% endblock content %}
