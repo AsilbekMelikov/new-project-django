@@ -34,9 +34,19 @@
               <li><a href="{% url 'home_page' %}">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="{% url 'contact_page' %}">Contact</a></li>
+              {% if request.user.is_authenticated and request.user.is_superuser %}
+              <li><a href="{% url 'admin_page' %}">Admin page</a></li>
+              {% endif %}
             </ul>
           </div>
           <div class="header_top_right">
+            {% if request.user.is_authenticated %}
+               <p><a href="{% url 'logout_page' %}" style="color:white" >Logout</a></p>
+              <p><a href="{% url 'my_profile' %}" style="color:white" >My profile</a></p>
+            {% else %}
+              <p><a href="{% url 'login_page' %}" style="color:white">Login</a></p>
+              <p><a href="{% url 'signup_page' %}" style="color:white">Signup</a></p>
+            {% endif %}
             <p>{% now 'Y, M, D, H:i' %}</p>
           </div>
         </div>
@@ -57,12 +67,21 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="{% url 'home_page' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          {% if request.user.is_authenticated and request.user.is_superuser %}
+          <li><a href="{% url 'news_creation' %}">Create News</a></li>
+          {% endif %}
            {% for category in categories %}
               <li><a href="{% url category.name %}">{{category.name}}</a></li>
             {% endfor %}
           <li><a href="{% url 'contact_page' %}">Contact Us</a></li>
           <li><a href="pages/404.html">404 Page</a></li>
+          <li>
+                <form method="get" action="{% url 'search_result' %}" >
+                  <input type="search" name="q" class="form-control" placeholder="Search..." />
+                </form>
+          </li>
         </ul>
+
       </div>
     </nav>
   </section>
@@ -72,7 +91,7 @@
         <div class="latest_newsarea"> <span>Latest News</span>
           <ul id="ticker01" class="news_sticker">
           {% for news in latest_news %}
-            <li><a href="#"><img src="{{news.image.url}}" alt="">{{news.title | truncatewords:3}}</a></li>
+            <li><a href="{{news.get_absolute_url}}"><img src="{{news.image.url}}" alt="">{{news.title | truncatewords:3}}</a></li>
           {% endfor %}
 
           </ul>

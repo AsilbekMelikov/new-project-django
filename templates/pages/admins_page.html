@@ -1,0 +1,42 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Admins page {% endblock title %}
+
+{% block content %}
+    <h2>
+       Welcome to Admins page
+    </h2>
+    <h3>Admins info:</h3>
+    <table class="table table-responsive table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>
+            Username
+          </th>
+          <th>
+            Firstname
+          </th>
+          <th>
+            Lastname
+          </th>
+          <th>
+            Email
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for admin in admins %}
+          <tr>
+            <td>{{admin.username}}</td>
+            <td>{{admin.first_name|default:"not given"}}</td>
+            <td>{{admin.last_name|default:"not given"}}</td>
+            <td>{{admin.email|default:"not given"}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <figure class="bsbig_fig  wow fadeInDown">
+        <figcaption> <a href="{% url 'news_creation' %}">Create news</a> </figcaption>
+   </figure>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "news/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Login page
+{% endblock title %}
+
+
+{% block content %}
+
+    <h2>You have been logged out</h2>
+    <figure class="bsbig_fig  wow fadeInDown">
+        <figcaption> <a href="{% url 'home_page' %}">Back to main page</a> </figcaption>
+   </figure>
+   <figure class="bsbig_fig  wow fadeInDown">
+        <figcaption> <a href="{% url 'login_page' %}">Login again</a> </figcaption>
+   </figure>
+
+
+{% endblock content %}

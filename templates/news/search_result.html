@@ -1,0 +1,31 @@
+{% extends "news/base.html" %}
+
+
+{% load static %}
+
+{% block title %}
+Search results
+{% endblock title %}
+
+{% block content %}
+    <div class="row">
+      {% if not search_result %}
+        <h2>Nothing found, please search for another one once again</h2>
+      {% else %}
+        {% for search in search_result %}
+        <div class="col-sm-6" style="margin-bottom: 20px">
+           <a href="{{search.get_absolute_url}}">
+          <div class="" style="display:flex; gap: 15px">
+                <img src="{{search.image.url}}" alt="{{search.title}}" width="150" height="100" />
+                <figure class="bsbig_fig  wow fadeInDown">
+                  <figcaption> <a href="{{search.get_absolute_url}}">{{search.title}}</a> </figcaption>
+             </figure>
+          </div>
+           </a>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+
+{% endblock content %}

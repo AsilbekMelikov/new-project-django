@@ -1,0 +1,29 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Local news page {% endblock title %}
+
+{% block content %}
+    <h2>
+       Welcome {{user.username}} !
+    </h2>
+    <h5>Your personal info:</h5>
+    <ul>
+        {% if photo in profile %}
+        <li>Your photo: <img src="{{profile.photo.url}}" alt="profile photo" width="50" height="50" style="border-radius: 50%" /></li>
+        {% endif %}
+        <li>Your username: {{user.username}}</li>
+        <li>Your email: {{ user.email|default:"not given"}}</li>
+        <li>Your firstname: {{ user.first_name|default:"not given"}}</li>
+        <li>Your lastname: {{ user.last_name|default:"not given"}}</li>
+    </ul>
+    <figure class="bsbig_fig  wow fadeInDown">
+        <figcaption> <a href="{% url 'profile_edit' %}">Edit personal info</a> </figcaption>
+   </figure>
+    <figure class="bsbig_fig  wow fadeInDown">
+        <figcaption> <a href="{% url 'password_change' %}">Password change</a> </figcaption>
+   </figure>
+    <figure class="bsbig_fig  wow fadeInDown">
+        <figcaption> <a href="{% url 'home_page' %}">Back to main page</a> </figcaption>
+   </figure>
+{% endblock content %}

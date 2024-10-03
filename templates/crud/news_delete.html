@@ -1,0 +1,16 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} News Deletion {% endblock title %}
+
+{% block content %}
+
+    <div class="mt-2">
+        <form method="post" >{% csrf_token %}
+            <button type="submit" class="btn btn-danger px-2 ">
+                Delete news
+            </button>
+        </form>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "news/base.html" %}
+
+{% load static %}
+
+{% block title %}
+User info edit
+{% endblock title %}
+
+
+{% block content %}
+
+<h2>User info edit</h2>
+<p>If you want, you can change your personal info</p>
+
+<form method="post" enctype="multipart/form-data"> {% csrf_token %}
+   {{user_form.as_p}}
+   {{profile_form.as_p}}
+
+  <button type="submit" class="btn btn-info px-2">Edit info</button>
+</form>
+
+{% endblock content %}

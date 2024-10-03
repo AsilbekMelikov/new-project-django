@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from typing import List
 
-from django.conf.global_settings import STATICFILES_DIRS, STATIC_ROOT, STATICFILES_FINDERS
+from django.conf.global_settings import STATICFILES_DIRS, STATIC_ROOT, STATICFILES_FINDERS, LOGIN_REDIRECT_URL, \
+    EMAIL_BACKEND, LOGIN_URL
+from django.conf.urls import handler403
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "news_app"
+    "news_app",
+    "accounts",
+    "hitcount"
 ]
 
 MIDDLEWARE = [
@@ -135,3 +139,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = "home_page"
+
+LOGIN_URL = "login_page"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+handler403 = "news_app.views.custom_403_view"

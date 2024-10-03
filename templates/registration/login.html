@@ -1,0 +1,28 @@
+{% extends "news/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Login page
+{% endblock title %}
+
+
+{% block content %}
+
+<h2>Website ga kirish - Login</h2>
+<figure class="bsbig_fig  wow fadeInDown">
+    <figcaption>If you don't have a profile, <a href="{% url 'signup_page' %}">click to register</a> </figcaption>
+</figure>
+<p>Iltimos, saytga kirish uchun quyidagi formani to'ldiring!</p>
+
+<form method="post"> {% csrf_token %}
+   {{form.as_p}}
+
+   <figure class="bsbig_fig  wow fadeInDown">
+        <figcaption> <a href="{% url 'password_reset' %}">Forgot password ?</a> </figcaption>
+   </figure>
+  <button type="submit" class="btn btn-info px-2">Login</button>
+</form>
+
+
+{% endblock content %}
